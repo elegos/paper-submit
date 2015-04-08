@@ -1,7 +1,7 @@
 <link href="../polymer/polymer.html" rel="import">
 <link href="../paper-button/paper-button.html" rel="import">
 
-<polymer-element name="paper-submit" attributes="bClass raised recenteringTouch fill" role="button">
+<polymer-element name="paper-submit" attributes="bClass raised recenteringTouch fill" role="button" on-keypress="{{enter_submit}}">
   <template>
     <paper-button id="button" on-click="{{click_submit}}" class="{{bClass}}" raised="{{raised}}" recenteringTouch="{{recenteringTouch}}" role="button">
       <content></content>
@@ -32,7 +32,7 @@
          */
         raised: false,
         recenteringTouch: false,
-        fill: true,
+        fill: true
       },
 
       click_submit: function () {
@@ -50,6 +50,12 @@
           }
 
           button.click();
+        }
+      },
+      
+      enter_submit: function (ev) {
+        if (ev.keyCode === 13) {
+          this.click_submit();
         }
       }
     });
